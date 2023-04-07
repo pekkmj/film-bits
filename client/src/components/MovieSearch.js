@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const MovieButton = () => {
   const [movieInfo, setMovieInfo] = useState("")
+  const [displayInfo, setDisplayInfo] = useState("")
+
+  const fetchMovie = async () =>{
+    try {
+      const response = await fetch(`/api/v1/movie`)
+      const body = await response.json()
+      setMovieInfo(body.movie)
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
+
+  useEffect(()=>{
+    fetchMovie()
+  }, [])
 
   const onClick = () => {
-    if(!movieInfo) {
-      setMovieInfo(
-        <img src="https://cdn11.bigcommerce.com/s-yzgoj/images/stencil/1280x1280/products/268821/4556789/apiihy1mm__31528.1625622408.jpg" />
+    if(!displayInfo) {
+      setDisplayInfo(
+        <div>
+          <h1>{movieInfo.Title}</h1>
+        </div>
       )
     }
     else {
-      setMovieInfo()
+      setDisplayInfo("")
     }
   }
 
   return (
     <div>
       <button className="button" onClick={onClick}>Click me for a movie!</button>
-      {movieInfo}
+      {displayInfo}
     </div>
   )
 }

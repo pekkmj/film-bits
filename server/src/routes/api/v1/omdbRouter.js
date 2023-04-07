@@ -4,7 +4,7 @@ import omdbClient from "../../../../apiClient/omdb.js";
 
 const omdbRouter = new express.Router()
 
-omdbRouter.get("/movie", async (req, res)=>{
+omdbRouter.get("/", async (req, res)=>{
   try {
     const movieResponse = await omdbClient.getMovie("tt0848228")
     const movieData = JSON.parse(movieResponse)

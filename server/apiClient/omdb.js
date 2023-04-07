@@ -8,8 +8,10 @@ class omdbClient {
   static async getMovie(id){
 		try {
 				const url = `http://www.omdbapi.com/?i=${id}&apikey=${omdbApiKey}`
-				const apiResponse = got(url)
-				console.log(apiResponse)
+				console.log(url)
+				const apiResponse = await got(url)
+				const responseBody = apiResponse.body
+				return responseBody
 		} catch (error) {
       return { error: error.message };
     } 
