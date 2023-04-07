@@ -10,7 +10,7 @@ class omdbClient {
 				const url = `http://www.omdbapi.com/?i=${id}&apikey=${omdbApiKey}`
 				const apiResponse = got(url)
 				console.log(apiResponse)
-		}catch (error) {
+		} catch (error) {
       return { error: error.message };
     } 
 	}
