@@ -10,7 +10,7 @@ const MovieButton = () => {
       )
     }
     else {
-      setMovieInfo("")
+      setMovieInfo()
     }
   }
 

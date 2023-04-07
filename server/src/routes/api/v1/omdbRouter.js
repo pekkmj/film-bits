@@ -1,10 +1,10 @@
 import express from "express";
 
-import omdbClient from "../../../../apiClient/omdb";
+import omdbClient from "../../../../apiClient/omdb.js";
 
 const omdbRouter = new express.Router()
 
-omdbRouter.get("/", async (req, res)=>{
+omdbRouter.get("/movie", async (req, res)=>{
   try {
     const movieResponse = await omdbClient.getMovie("tt0848228")
     const movieData = JSON.parse(movieResponse)
@@ -16,3 +16,5 @@ omdbRouter.get("/", async (req, res)=>{
     return res.status(401).json({ errors: error })
   }
 })
+
+export default omdbRouter
